@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Covidivision</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/covid_1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3em;
+            margin: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            /background-color: rgba(0, 0, 0, 0.7);/
+            padding: 10px 20px;
+            text-align: right;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Center Text Section */
+        .center-text {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(135, 206, 235, 0.3); /* Sky blue with 30% opacity */
+            color: #000;
+        }
+        .center-text h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+        }
+        .center-text ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .center-text li {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Precautions Section */
+        .precautions-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .precautions-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .precautions-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        .precautions-box p {
+            font-size: 1.3em;
+            line-height: 1.6;
+        }
+
+        /* Upload Section */
+        .upload-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .upload-container input[type="file"],
+        .upload-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .upload-container input[type="file"]:hover,
+        .upload-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* About Section */
+        .about-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .about-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .about-container p {
+            font-size: 1.6em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .about-container ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .about-container li {
+            font-size: 1.4em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">Covidivision</h1>
+    <nav>
+        <a href="#center-text">Home</a>
+        <a href="#precautions">Precautions</a>
+        <a href="#upload">Upload</a>
+        <a href="#about">About</a>
+    </nav>
+    <div id="center-text" class="center-text">
+        <h1>Smart Assistance for Covid Protection</h1>
+        <ul>
+            <li>Wear a mask in public places.</li>
+            <li>Maintain social distancing of at least 6 feet.</li>
+            <li>Wash your hands frequently with soap and water.</li>
+        </ul>
+    </div>
+    <div class="precautions-container" id="precautions">
+        <h2>Precautions</h2>
+        <div class="precautions-box">
+            <h3>Wear Mask</h3>
+            <p>Wear mask - protect others and yourself</p>
+        </div>
+        <div class="precautions-box">
+            <h3>Sanitize Frequently</h3>
+            <p>Protect yourself from invisible</p>
+        </div>
+        <div class="precautions-box">
+            <h3>Social Distancing</h3>
+            <p>Break the chain through distancing</p>
+        </div>
+        <div class="precautions-box">
+            <h3>Boost Immunity</h3>
+            <p>Eating healthy food and exercise daily to strengthen the body’s defense system</p>
+        </div>
+    </div>
+    <div class="upload-container" id="upload">
+        <h2>Upload an Image for Prediction</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+    <div class="about-container" id="about">
+        <h2>X-Ray Analysis for Potential COVID-19 Detection</h2>
+        <p>Covi-Sift harnesses the power of Artificial Intelligence (AI) to analyze chest X-ray images and identify potential signs of COVID-19 infection. This is not a definitive diagnostic tool, but it can be a valuable aid for healthcare professionals in the fight against the virus.</p>
+        
+        <h3>Here's how it works:</h3>
+        <ol>
+            <li><strong>Upload your X-ray:</strong> Simply upload a clear X-ray image of your lungs.</li>
+            <li><strong>AI Analysis:</strong> Our AI model, trained on a massive dataset of chest X-rays, will analyze your image.</li>
+            <li><strong>Result Display:</strong> You will receive a preliminary assessment indicating the likelihood of COVID-19 presence in your lungs. The results will be presented as a percentage probability (e.g., 70% chance of COVID-19).</li>
+        </ol>
+
+        <div class="important-disclaimer">
+            <h3>Important Disclaimer:</h3>
+            <ul>
+                <li><strong>This AI analysis is for informational purposes only and should not be used as a sole basis for diagnosis or treatment decisions.</strong></li>
+                <li><strong>A positive result from our tool does not guarantee you have COVID-19.</strong></li>
+                <li><strong>A negative result does not rule out the possibility of infection.</strong></li>
+                <li><strong>Always consult with a qualified healthcare professional for a proper diagnosis and treatment plan.</strong></li>
+            </ul>
+        </div>
+
+        <h3>Benefits of using our X-Ray Analysis Tool:</h3>
+        <ul>
+            <li><strong>Fast and Convenient:</strong> Get a preliminary assessment from the comfort of your home.</li>
+            <li><strong>Non-invasive:</strong> No need for uncomfortable swab tests.</li>
+            <li><strong>Early Detection:</strong> Potential COVID-19 identification can help with early intervention and treatment.</li>
+            <li><strong>Resource Management:</strong> This tool can help healthcare professionals prioritize testing and resource allocation.</li>
+        </ul>
+
+        <p><strong>Please remember:</strong></p>
+        <ul>
+            <li>This tool is currently under development and may not be 100% accurate.</li>
+            <li>If you experience any COVID-19 symptoms, <strong>get tested immediately by a healthcare professional</strong>.</li>
+        </ul>
+
+        <p><strong>Together, with the help of AI, we can combat COVID-19 more effectively.</strong></p>
+    </div>
+</body>
+</html>

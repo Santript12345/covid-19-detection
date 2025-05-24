@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/covid_1.jpg') }}") no-repeat center center fixed;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        .suggestions {
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestions h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .suggestions ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .suggestions li {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <img src="{{ url_for('static', filename=image_url) }}" alt="Uploaded Image" width="300">
+    <p>Prediction: {{ prediction }}</p>
+    <a href="/">Upload Another Image</a>
+
+    <div class="suggestions">
+        <h2>Suggestions and Medication:</h2>
+        <ul id="suggestionsList">
+            <!-- Suggestions and medications will be dynamically added here -->
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var prediction = "{{ prediction }}";
+
+            var suggestionsList = document.getElementById('suggestionsList');
+
+            var suggestions = [];
+
+            if (prediction === 'Normal') {
+                suggestions = [
+                    "Continue practicing preventive measures like wearing masks and social distancing.",
+                    "Maintain a healthy lifestyle with balanced diet and regular exercise.",
+                    "Stay hydrated and get adequate sleep.",
+                    "Consult a healthcare professional for further advice."
+                ];
+            } else if (prediction === 'Covid') {
+                suggestions = [
+                    "Isolate yourself and avoid contact with others.",
+                    "Monitor your symptoms closely and seek medical attention if they worsen.",
+                    "Follow guidelines provided by healthcare authorities for COVID-19 patients.",
+                    "Stay hydrated and rest as much as possible.",
+                    "Take medications as prescribed by your doctor."
+                ];
+            } else if (prediction === 'Viral Pneumonia') {
+                suggestions = [
+                    "Consult a healthcare professional immediately for proper diagnosis and treatment.",
+                    "Follow prescribed medications strictly.",
+                    "Get plenty of rest and avoid strenuous activities.",
+                    "Stay hydrated and maintain a healthy diet.",
+                    "Monitor your symptoms and seek medical help if they worsen."
+                ];
+            }
+
+            // Create list items for each suggestion
+            suggestions.forEach(function(suggestion) {
+                var li = document.createElement('li');
+                li.textContent = suggestion;
+                suggestionsList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
